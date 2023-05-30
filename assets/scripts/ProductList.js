@@ -23,7 +23,7 @@ export class ProductList {
 
     this.products.forEach((product) => {
       const productLi = product.render();
-      console.log("li", productLi);
+      //   console.log("li", productLi);
       ul.append(productLi);
     });
     const app = document.getElementById("app");
