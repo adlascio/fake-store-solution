@@ -4,20 +4,18 @@ export class ProductList {
   constructor() {
     this.products = [];
   }
-  fetchProducts() {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("data", data);
-        for (const prod of data) {
-          const newProductItem = new ProductItem(prod);
-          //   console.log("prod", newProductItem);
-          this.products.push(newProductItem);
-        }
-        this.render();
-      });
+  async fetchProducts() {
+    const res = await fetch("https://fakestoreapi.com/products");
+    const data = await res.json();
+    for (const prod of data) {
+      const newProductItem = new ProductItem(prod);
+      //   console.log("prod", newProductItem);
+      this.products.push(newProductItem);
+    }
+    return true;
   }
-  render() {
+  async render() {
+    const fetch = await this.fetchProducts();
     const ul = document.createElement("ul");
     ul.classList.add("product-list");
 
@@ -26,7 +24,6 @@ export class ProductList {
       //   console.log("li", productLi);
       ul.append(productLi);
     });
-    const app = document.getElementById("app");
-    app.append(ul);
+    return ul;
   }
 }
