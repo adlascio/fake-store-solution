@@ -1,8 +1,11 @@
+import { App } from "./app.js";
 import { Product } from "./Product.js";
 
 export class ProductItem extends Product {
   addToCart() {
+    console.log("this", this);
     console.log("prod", this.product);
+    App.addProductToCart(this.product);
   }
 
   render() {
@@ -21,6 +24,8 @@ export class ProductItem extends Product {
         <button>Add to Cart</button>
       </div>
     </div>`;
+    const addBtn = li.querySelector("button");
+    addBtn.addEventListener("click", this.addToCart.bind(this));
     return li;
   }
 }

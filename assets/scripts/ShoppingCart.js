@@ -2,6 +2,12 @@ export class ShoppingCart {
   constructor() {
     this.items = [];
   }
+
+  addProduct(product) {
+    this.items.push(product);
+    console.log("items", this.items);
+  }
+
   get total() {
     return this.items.reduce((accumulator, product) => {
       return accumulator + product.price;
